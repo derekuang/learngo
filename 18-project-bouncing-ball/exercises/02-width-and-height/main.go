@@ -81,7 +81,8 @@ func main() {
 
 	width, height := screen.Size()
 
-	width /= runewidth.RuneWidth(cellBall)
+	ballwidth := runewidth.RuneWidth(cellBall)
+	width /= ballwidth
 	height--
 
 	// drawing buffer length
@@ -142,7 +143,7 @@ func main() {
 				if board[x][y] {
 					cell = cellBall
 				}
-				buf = append(buf, cell, ' ')
+				buf = append(buf, cell, ' ') // 加该空格应该是为了让整段动画更流畅自然，因为emoji符号占位大于一个空格，所以在下一帧可以保证符号的起始位置在上一帧结束位置之后
 			}
 			buf = append(buf, '\n')
 		}

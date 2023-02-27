@@ -52,7 +52,7 @@ func main() {
 
 	var (
 		px, py int    // ball position
-		vx, vy = 1, 1 // velocities
+		vx, vy = 5, 2 // velocities
 
 		cell rune // current cell (for caching)
 	)
@@ -85,23 +85,27 @@ func main() {
 	screen.Clear()
 
 	for i := 0; i < maxFrames; i++ {
+		// remove the previous ball
+		board[px][py] = false
+
 		// calculate the next ball position
 		px += vx
 		py += vy
 
 		// when the ball hits a border reverse its direction
-		if px <= 0 || px >= width-1 {
+		switch {
+		case px <= 0:
+			px = 0
 			vx *= -1
-		}
-		if py <= 0 || py >= height-1 {
+		case px >= width-1:
+			px = width - 1
+			vx *= -1
+		case py <= 0:
+			py = 0
 			vy *= -1
-		}
-
-		// remove the previous ball
-		for y := range board[0] {
-			for x := range board {
-				board[x][y] = false
-			}
+		case py >= height-1:
+			py = height - 1
+			vy *= -1
 		}
 
 		// put the new ball
