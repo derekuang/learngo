@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"os"
 	"sort"
+	"strconv"
 )
 
 // ---------------------------------------------------------
@@ -65,7 +66,8 @@ func main() {
 	sort.Strings(items)
 
 	var data []byte
-	for _, s := range items {
+	for i, s := range items {
+		data = append(data, strconv.Itoa(i+1)+". "...)
 		data = append(data, s...)
 		data = append(data, '\n')
 	}
