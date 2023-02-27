@@ -67,7 +67,7 @@ func main() {
 	}
 
 	// create a drawing buffer
-	buf := make([]rune, 0, width*height)
+	buf := make([]rune, 0, width*height*2+height)
 
 	// clear the screen once
 	screen.Clear()
