@@ -29,7 +29,18 @@ package main
 
 func main() {
 	// Change this accordingly to produce the expected outputs
-	// age := 10
+	age := 10
 
 	// Type your if statement here.
+	if age > 60 {
+		println("Getting older\n")
+	} else if age > 30 {
+		println("Getting wiser\n")
+	} else if age > 20 {
+		println("Adulthood\n")
+	} else if age > 10 {
+		println("Young blood\n")
+	} else {
+		println("Booting up\n")
+	}
 }

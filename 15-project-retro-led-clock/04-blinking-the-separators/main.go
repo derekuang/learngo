@@ -9,7 +9,6 @@
 package main
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/inancgumus/screen"
@@ -106,17 +105,31 @@ func main() {
 		"   ",
 	}
 
+	invisColon := placeholder{
+		"   ",
+		"   ",
+		"   ",
+		"   ",
+		"   ",
+	}
+
 	digits := [...]placeholder{
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
-	screen.Clear()
+	var (
+		now  time.Time
+		hour int
+		min  int
+		sec  int
+	)
 
+	screen.Clear()
 	for {
 		screen.MoveTopLeft()
 
-		now := time.Now()
-		hour, min, sec := now.Hour(), now.Minute(), now.Second()
+		now = time.Now()
+		hour, min, sec = now.Hour(), now.Minute(), now.Second()
 
 		clock := [...]placeholder{
 			digits[hour/10], digits[hour%10],
@@ -126,12 +139,19 @@ func main() {
 			digits[sec/10], digits[sec%10],
 		}
 
-		for line := range clock[0] {
-			for digit := range clock {
-				fmt.Print(clock[digit][line], "  ")
-			}
-			fmt.Println()
+		if sec%2 == 0 {
+			clock[2], clock[5] = invisColon, invisColon
+		} else {
+			clock[2], clock[5] = colon, colon
 		}
+
+		for i := range clock[0] {
+			for _, digit := range clock {
+				print(digit[i] + "  ")
+			}
+			println()
+		}
+		println()
 
 		time.Sleep(time.Second)
 	}

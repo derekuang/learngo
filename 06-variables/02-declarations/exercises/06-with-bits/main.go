@@ -37,8 +37,18 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	// var i int
-	// var i8 int8
-
-	// CONTINUE FROM HERE....
+	var v1 int
+	var v2 int8
+	var v3 int16
+	var v4 int32
+	var v5 int64
+	var v6 float32
+	var v7 float64
+	var v8 complex64
+	var v9 complex128
+	var v10 bool
+	var v11 string
+	var v12 rune
+	var v13 byte
+	println(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13)
 }

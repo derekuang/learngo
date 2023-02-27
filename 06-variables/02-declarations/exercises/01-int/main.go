@@ -20,6 +20,6 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	// var ? ?
-	// ?
+	var height int
+	println(height)
 }

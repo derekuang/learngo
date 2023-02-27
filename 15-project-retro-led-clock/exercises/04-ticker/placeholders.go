@@ -98,6 +98,14 @@ var colon = placeholder{
 	"   ",
 }
 
+var empty = placeholder{
+	"   ",
+	"   ",
+	"   ",
+	"   ",
+	"   ",
+}
+
 var digits = [...]placeholder{
 	zero, one, two, three, four, five, six, seven, eight, nine,
 }

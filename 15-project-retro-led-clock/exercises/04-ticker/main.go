@@ -82,9 +82,11 @@ import (
 )
 
 func main() {
-	screen.Clear()
+	const scrLen = 10 // For the exercise, this constant is 16.
 
+	offset := 0
 	for {
+		screen.Clear()
 		screen.MoveTopLeft()
 
 		now := time.Now()
@@ -97,6 +99,16 @@ func main() {
 			colon,
 			digits[sec/10], digits[sec%10],
 		}
+
+		copy := clock
+		for i := range clock {
+			if (i+offset)%scrLen > len(clock)-1 {
+				clock[i] = empty
+			} else {
+				clock[i] = copy[(i+offset)%scrLen]
+			}
+		}
+		offset = (offset + 1) % scrLen
 
 		for line := range clock[0] {
 			for index, digit := range clock {

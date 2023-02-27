@@ -55,9 +55,8 @@ import (
 )
 
 func main() {
-	screen.Clear()
-
 	for {
+		screen.Clear()
 		screen.MoveTopLeft()
 
 		now := time.Now()
@@ -69,6 +68,10 @@ func main() {
 			digits[min/10], digits[min%10],
 			colon,
 			digits[sec/10], digits[sec%10],
+		}
+
+		if sec%10 == 0 {
+			clock = alarm
 		}
 
 		for line := range clock[0] {

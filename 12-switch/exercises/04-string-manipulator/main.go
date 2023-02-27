@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"os"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // STORY
 //  You want to write a program that will manipulate a
@@ -43,6 +48,26 @@ package main
 //    Unknown command: "genius"
 // ---------------------------------------------------------
 
-func main() {
+var errMsg = `[command] [string]
 
+Available commands: lower, upper and title`
+
+func main() {
+	if len(os.Args) < 3 {
+		println(errMsg)
+		return
+	}
+
+	command, str := os.Args[1], os.Args[2]
+	switch command {
+	case "lower":
+		str = strings.ToLower(str)
+	case "upper":
+		str = strings.ToUpper(str)
+	case "title":
+		str = strings.Title(str)
+	default:
+		str = "Unknown command: " + command
+	}
+	println(str)
 }

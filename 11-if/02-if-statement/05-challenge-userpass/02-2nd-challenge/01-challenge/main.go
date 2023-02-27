@@ -49,9 +49,12 @@ const (
 	errUser  = "Access denied for %q.\n"
 	errPwd   = "Invalid password for %q.\n"
 	accessOK = "Access granted to %q.\n"
-	user     = "jack"
-	pass     = "1888"
 )
+
+var usermap map[string]string = map[string]string{
+	"jack":  "1888",
+	"inanc": "1879",
+}
 
 func main() {
 	args := os.Args
@@ -63,11 +66,13 @@ func main() {
 
 	u, p := args[1], args[2]
 
-	if u != user {
-		fmt.Printf(errUser, u)
-	} else if p != pass {
-		fmt.Printf(errPwd, u)
+	if password, ok := usermap[u]; ok {
+		if p == password {
+			fmt.Printf(accessOK, u)
+		} else {
+			fmt.Printf(errPwd, u)
+		}
 	} else {
-		fmt.Printf(accessOK, u)
+		fmt.Printf(errUser, u)
 	}
 }

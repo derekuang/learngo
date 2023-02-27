@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"math/rand"
+	"os"
+	"strconv"
+	"time"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Random Messages
 //
@@ -34,5 +41,67 @@ package main
 //    YOU LOST. TRY AGAIN?
 // ---------------------------------------------------------
 
+const (
+	maxTurns = 5 // less is more difficult
+	usage    = `Welcome to the Lucky Number Game! 🍀
+
+The program will pick %d random numbers.
+Your mission is to guess one of those numbers.
+
+The greater your number is, harder it gets.
+
+Wanna play?
+`
+	notNumErr = `Not a number.`
+	notPosErr = `Please pick a positive number.`
+	firstMsg  = `🥇 FIRST TIME WINNER!!!`
+	winMsg1   = `🎉  YOU WON!`
+	winMsg2   = `🎉  YOU'RE AWESOME!`
+	lostMsg1  = `☠️  YOU LOST... Try again?`
+	lostMsg2  = `☠️  LOSER!`
+)
+
 func main() {
+	rand.Seed(time.Now().UnixNano())
+
+	args := os.Args[1:]
+
+	if len(args) != 1 {
+		println(usage)
+		return
+	}
+
+	guess, err := strconv.Atoi(args[0])
+
+	if err != nil {
+		println(notNumErr)
+		return
+	}
+
+	if guess <= 0 {
+		println(notPosErr)
+	}
+
+	for turn := 1; turn <= maxTurns; turn++ {
+		res := rand.Intn(guess) + 1
+
+		if guess != res {
+			continue
+		}
+
+		switch rand.Intn(2) {
+		case 0:
+			println(winMsg1)
+		case 1:
+			println(winMsg2)
+		}
+		return
+	}
+
+	switch rand.Intn(2) {
+	case 0:
+		println(lostMsg1)
+	case 1:
+		println(lostMsg2)
+	}
 }

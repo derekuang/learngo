@@ -26,5 +26,5 @@ func main() {
 
 	// pretty print it:
 
-	// fmt.Printf("%g feet is %g meters.\n", feet, meters)
+	fmt.Printf("%g feet is %g meters.\n", feet, meters)
 }

@@ -27,11 +27,11 @@ import "fmt"
 
 func main() {
 	var (
-		names     []string  // The names of your friends
-		distances []int     // The distances
-		data      []byte    // A data buffer
-		ratios    []float64 // Currency exchange ratios
-		alives    []bool    // Up/Down status of web servers
+		names     []string  = make([]string, 0)  // The names of your friends
+		distances []int     = make([]int, 0)     // The distances
+		data      []byte    = make([]byte, 0)    // A data buffer
+		ratios    []float64 = make([]float64, 0) // Currency exchange ratios
+		alives    []bool    = make([]bool, 0)    // Up/Down status of web servers
 	)
 
 	fmt.Printf("names    : %T %d %t\n", names, len(names), names == nil)

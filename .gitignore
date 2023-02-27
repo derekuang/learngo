@@ -14,3 +14,7 @@
 *.out
 
 .vscode/*
+
+test.go
+
+*.txt

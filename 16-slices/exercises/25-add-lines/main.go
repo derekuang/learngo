@@ -78,7 +78,13 @@ func main() {
 	//
 	// ~~~ CHANGE THIS CODE ~~~
 	//
-	fix := lyric
+	fix := make([]string, len(lyric)+3)
+	copy(fix, lyric[:8])
+	fix[8] = "\n"
+	copy(fix[9:19], lyric[8:18])
+	fix[19] = "\n"
+	copy(fix[20:], lyric[18:])
+	fix[len(fix)-1] = "\n"
 	//
 	// ===================================
 
@@ -103,7 +109,7 @@ func init() {
 	//
 	// This code runs before the main function above.
 	//
-	// s.Colors(false)     // if your editor is light background color then enable this
+	// s.Colors(false) // if your editor is light background color then enable this
 	//
 	s.PrintBacking = true  // prints the backing arrays
 	s.MaxPerLine = 5       // prints max 15 elements per line

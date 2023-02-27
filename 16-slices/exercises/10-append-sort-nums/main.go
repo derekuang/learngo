@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"sort"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Append and Sort Numbers
 //
@@ -43,4 +50,20 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	args := os.Args[1:]
+	if len(args) == 0 {
+		println("provide a few numbers")
+		return
+	}
+
+	nums := []int{}
+
+	for _, arg := range args {
+		if num, err := strconv.Atoi(arg); err == nil {
+			nums = append(nums, num)
+		}
+	}
+	sort.Ints(nums)
+
+	fmt.Printf("%d\n", nums)
 }

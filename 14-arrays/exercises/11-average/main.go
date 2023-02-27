@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Find the Average
 //
@@ -40,4 +45,22 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	args := os.Args[1:]
+	if len(args) <= 0 || len(args) > 5 {
+		println("Please tell me numbers (maximum 5 numbers).")
+		return
+	}
+
+	c, sum, avg := 0, 0, 0
+	for _, arg := range args {
+		if num, err := strconv.Atoi(arg); err == nil {
+			c++
+			sum += num
+		}
+	}
+
+	if c > 0 {
+		avg = sum / c
+	}
+	println("Average:", avg)
 }

@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Math Tables
 //
@@ -104,5 +111,67 @@ package main
 //     go run main.go "*" 4
 // ---------------------------------------------------------
 
+const (
+	ops    = `*/+-`
+	max    = 10
+	useErr = `Usage: [op=*/+-] [size]`
+	opErr  = `Invalid operator.
+Valid ops one of: */+-`
+	sizeMiss = `Size is missing`
+	sizeErr  = `Wrong size`
+)
+
 func main() {
+	var (
+		args = os.Args
+		len  = len(args)
+	)
+
+	if len != 3 {
+		println(useErr)
+		return
+	}
+
+	op := args[1]
+	size, err := strconv.Atoi(args[2])
+
+	if !strings.ContainsAny(op, ops) {
+		println(opErr)
+		return
+	} else if err != nil || size <= 0 || size > max {
+		println(sizeErr)
+		return
+	}
+
+	for i := -1; i <= size; i++ {
+		for j := -1; j <= size; j++ {
+			if i == -1 && j == -1 {
+				print(op, "\t")
+			} else if i == -1 {
+				fmt.Printf("%d\t", j)
+			} else if j == -1 {
+				fmt.Printf("%d\t", i)
+			} else {
+				var res int
+
+				switch op {
+				case "*":
+					res = i * j
+				case "/":
+					if j == 0 {
+						res = 0
+					} else {
+						res = i / j
+					}
+				case "+":
+					res = i + j
+				case "-":
+					res = i - j
+				}
+
+				fmt.Printf("%d\t", res)
+			}
+		}
+		println()
+	}
 }

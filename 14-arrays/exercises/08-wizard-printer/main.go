@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"fmt"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Wizard Printer
 //
@@ -30,4 +35,26 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	const (
+		FN = iota
+		LN
+		NN
+	)
+
+	scientists := [...][3]string{
+		{"First Name", "Last Name", "Nickname"},
+		{"Albert", "Einstein", "time"},
+		{"Isaac", "Newton", "apple"},
+		{"Stephen", "Hawking", "blackhole"},
+		{"Marie", "Curie", "radium"},
+		{"Charles", "Darwin", "fittest"},
+	}
+
+	for n, scit := range scientists {
+		fmt.Printf("%-16s%-16s%-16s\n", scit[FN], scit[LN], scit[NN])
+
+		if n == 0 {
+			fmt.Println(strings.Repeat("=", 50))
+		}
+	}
 }

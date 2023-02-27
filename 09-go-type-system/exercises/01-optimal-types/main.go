@@ -36,16 +36,23 @@ func main() {
 	// ---
 
 	// an english letter (search web for: ascii control code)
+	type letter byte
 
 	// a non-english letter (search web for: unicode codepoint)
+	type unicode rune
 
 	// a year in 4 digits like 2040
+	type year uint16
 
 	// a month in 2 digits: 1 to 12
+	type month uint8
 
 	// the speed of the light
+	type speed uint32
 
 	// angle of a circle
+	type angle float32
 
 	// PI number: 3.141592653589793
+	type pi float64
 }

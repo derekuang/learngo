@@ -24,5 +24,9 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	// Use fmt.Println()
+	println(1, 2, 3)
+	println(1.0, 2.0, 3.0)
+	println(true, false)
+	println("kuangyaode")
+	println("邝耀德")
 }

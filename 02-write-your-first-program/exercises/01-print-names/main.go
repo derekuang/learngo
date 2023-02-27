@@ -24,6 +24,6 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	// ?
-	// ?
+	println("kuangyaode")
+	println("kuangcande")
 }

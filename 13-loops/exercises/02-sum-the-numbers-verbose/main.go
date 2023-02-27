@@ -26,4 +26,16 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	const from, to = 1, 10
+	var sum int
+
+	for i := from; i <= to; i++ {
+		if i == to {
+			print(i, " = ")
+		} else {
+			print(i, " + ")
+		}
+		sum += i
+	}
+	println(sum)
 }

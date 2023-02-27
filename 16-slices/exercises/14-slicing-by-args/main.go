@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Slicing by arguments
 //
@@ -112,6 +118,31 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	// uncomment the slice below
-	// ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+	ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+
+	fmt.Printf("%q\n\n", ships)
+
+	args := os.Args[1:]
+
+	start, stop := 0, len(ships)
+
+	switch len(args) {
+	default:
+		fallthrough
+	case 0:
+		println("Provide only the [starting] and [stopping] positions")
+		return
+	case 2:
+		stop, _ = strconv.Atoi(args[1])
+		fallthrough
+	case 1:
+		start, _ = strconv.Atoi(args[0])
+	}
+
+	if l := len(ships); start < 0 || stop > l || start > stop {
+		println("Wrong positions")
+		return
+	}
+
+	fmt.Println(ships[start:stop])
 }

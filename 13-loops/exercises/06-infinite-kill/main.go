@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Infinite Kill
 //
@@ -53,4 +59,29 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	rand.Seed(int64(time.Now().Nanosecond()))
+
+	var (
+		r int
+		c string
+	)
+
+	for {
+		r = rand.Intn(4)
+
+		switch r {
+		case 0:
+			c = `\`
+		case 1:
+			c = `-`
+		case 2:
+			c = `/`
+		case 3:
+			c = `|`
+		}
+
+		fmt.Printf("\r%s Please Wait. Processing", c)
+
+		time.Sleep(250 * time.Millisecond)
+	}
 }

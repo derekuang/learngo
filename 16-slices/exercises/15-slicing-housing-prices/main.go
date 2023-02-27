@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Slicing the Housing Prices
 //
@@ -133,4 +139,54 @@ Istanbul,500,10,5,1000000`
 
 		separator = ","
 	)
+
+	columns := []string{"Location", "Size", "Beds", "Baths", "Price"}
+
+	rows := strings.Split(data, "\n")
+
+	datas := make([][]string, 0, 5)
+	for i := 0; i < 5; i++ {
+		datas = append(datas, []string{})
+	}
+	for _, row := range rows {
+		for i, str := range strings.Split(row, separator) {
+			datas[i] = append(datas[i], str)
+		}
+	}
+
+	args := os.Args[1:]
+	from, to := 0, len(columns)
+	switch len(args) {
+	case 2:
+		for i, str := range columns {
+			if args[1] == str {
+				to = i + 1
+				break
+			}
+		}
+		fallthrough
+	case 1:
+		for i, str := range columns {
+			if args[0] == str {
+				from = i
+				break
+			}
+		}
+		fallthrough
+	default:
+		if from > to {
+			from = 0
+		}
+	}
+
+	datas = datas[from:to]
+	for i := range datas[0] {
+		for j := range datas {
+			fmt.Printf("%-15s", datas[j][i])
+		}
+		println()
+		if i == 0 {
+			println()
+		}
+	}
 }

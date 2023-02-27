@@ -28,5 +28,10 @@ package main
 //        inside the hello function
 // ---------------------------------------------------------
 
+func bye() {
+	println("bye bye")
+}
+
 func main() {
+	hello()
 }

@@ -22,9 +22,10 @@ package main
 func main() {
 	// UNCOMMENT THE CODE BELOW:
 
-	// color := "green"
+	color := "green"
 
 	// ADD YOUR CODE BELOW:
 
-	// ?
+	color = "blue"
+	println(color)
 }

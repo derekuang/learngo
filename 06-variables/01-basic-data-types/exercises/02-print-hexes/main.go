@@ -8,8 +8,6 @@
 
 package main
 
-import "fmt"
-
 // THIS EXERCISE IS OPTIONAL
 
 // ---------------------------------------------------------
@@ -43,27 +41,34 @@ import "fmt"
 // ---------------------------------------------------------
 
 func main() {
-	// EXAMPLES:
+	// // EXAMPLES:
 
-	// I'm going to print 10 in hexadecimal
-	fmt.Println(0xa)
+	// // I'm going to print 10 in hexadecimal
+	// fmt.Println(0xa)
 
-	// I'm going to print 16 in hexadecimal
-	// 0x10
-	//   ^^-----  1 * 0 = 0
-	//   |
-	//   +------ 16 * 1 = 16
-	//                  = 16
-	fmt.Println(0x10)
+	// // I'm going to print 16 in hexadecimal
+	// // 0x10
+	// //   ^^-----  1 * 0 = 0
+	// //   |
+	// //   +------ 16 * 1 = 16
+	// //                  = 16
+	// fmt.Println(0x10)
 
-	// I'm going to print 150 in hexadecimal
-	// 0x96
-	//   ^^-----  1 * 6 = 6
-	//   |
-	//   +------ 16 * 9 = 144
-	//                  = 150
-	fmt.Println(0x96)
+	// // I'm going to print 150 in hexadecimal
+	// // 0x96
+	// //   ^^-----  1 * 6 = 6
+	// //   |
+	// //   +------ 16 * 9 = 144
+	// //                  = 150
+	// fmt.Println(0x96)
 
 	// COMMENT-OUT ALL THE CODE ABOVE, THEN,
 	// ADD YOUR OWN SOLUTIONS BELOW
+
+	println(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+	println(0xa, 0xb, 0xc, 0xd, 0xe, 0xf)
+	println(0x11)
+	println(0x19)
+	println(0x32)
+	println(0x64)
 }

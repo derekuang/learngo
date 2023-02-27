@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strings"
+	"time"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Days in a Month
 //
@@ -88,4 +95,55 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	if len(os.Args) == 1 {
+		println("Give me a month name")
+	}
+
+	var (
+		now   = time.Now()
+		year  = now.Year()
+		month = os.Args[1]
+		m     = strings.ToLower(month)
+		f     = "%q has %d days.\n"
+		days  = 0
+	)
+
+	if m == "january" {
+		days = 31
+	} else if m == "february" {
+		if isLeapYear(year) {
+			days = 29
+		} else {
+			days = 28
+		}
+	} else if m == "march" {
+		days = 31
+	} else if m == "april" {
+		days = 30
+	} else if m == "may" {
+		days = 31
+	} else if m == "june" {
+		days = 30
+	} else if m == "july" {
+		days = 31
+	} else if m == "august" {
+		days = 31
+	} else if m == "september" {
+		days = 30
+	} else if m == "october" {
+		days = 31
+	} else if m == "november" {
+		days = 30
+	} else if m == "december" {
+		days = 31
+	} else {
+		fmt.Printf("%q is not a month.\n", month)
+		return
+	}
+
+	fmt.Printf(f, month, days)
+}
+
+func isLeapYear(year int) bool {
+	return ((year%4 == 0) && ((year%100 != 0) || (year%400 == 0)))
 }

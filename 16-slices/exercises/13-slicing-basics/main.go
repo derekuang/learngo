@@ -56,7 +56,46 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+	"strconv"
+	"strings"
+
+	s "github.com/inancgumus/prettyslice"
+)
+
 func main() {
 	// uncomment the declaration below
-	// data := "2 4 6 1 3 5"
+	data := "2 4 6 1 3 5"
+
+	nums := make([]int, 0, 6)
+	for _, n := range strings.Fields(data) {
+		num, _ := strconv.Atoi(n)
+		nums = append(nums, num)
+	}
+
+	s.Show("nums", nums)
+
+	var (
+		evens, odds []int
+	)
+
+	for _, num := range nums {
+		if num%2 == 0 {
+			evens = append(evens, num)
+		} else {
+			odds = append(odds, num)
+		}
+	}
+
+	s.Show("evens", evens)
+	s.Show("odds", odds)
+	s.Show("middle", nums[2:4])
+	s.Show("first 2", nums[:2])
+	s.Show("last 2", nums[len(nums)-2:])
+	s.Show("evens last1", evens[len(evens)-1:])
+	s.Show("odds last 2", odds[len(odds)-2:])
+}
+
+func init() {
+	s.MaxPerLine = 6
 }

@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Path Searcher
 //
@@ -80,4 +86,19 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	paths := os.Getenv("PATH")
+	words := strings.Split(paths, ":")
+	query := os.Args[1:]
+
+	for _, q := range query {
+		q = strings.ToLower(q)
+
+		for i, w := range words {
+			w = strings.ToLower(w)
+
+			if strings.Contains(w, q) {
+				fmt.Printf("#%-2d: %q\n", i+1, w)
+			}
+		}
+	}
 }

@@ -29,4 +29,6 @@ package main
 
 func main() {
 	// call functions of the other files here
+	greet()
+	bye()
 }

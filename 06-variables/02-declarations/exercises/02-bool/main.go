@@ -20,6 +20,6 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	// var ? ?
-	// ?
+	var isOn bool
+	println(isOn)
 }

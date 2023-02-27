@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Housing Prices and Averages
 //
@@ -41,6 +47,54 @@ Istanbul,500,10,5,1000000`
 		separator = ","
 	)
 
-	// Solve this exercise by using your previous solution for
-	// the "Housing Prices" exercise.
+	rows := strings.Split(data, "\n")
+
+	var (
+		locations                  []string
+		sizes, beds, baths, prices []int
+	)
+
+	for _, row := range rows {
+		item := strings.Split(row, separator)
+
+		locations = append(locations, item[0])
+
+		size, _ := strconv.Atoi(item[1])
+		sizes = append(sizes, size)
+
+		bed, _ := strconv.Atoi(item[2])
+		beds = append(beds, bed)
+
+		bath, _ := strconv.Atoi(item[3])
+		baths = append(baths, bath)
+
+		price, _ := strconv.Atoi(item[4])
+		prices = append(prices, price)
+	}
+
+	for _, head := range strings.Split(header, separator) {
+		fmt.Printf("%-15s", head)
+	}
+	fmt.Printf("\n%s\n", strings.Repeat("=", 75))
+
+	for i := range locations {
+		fmt.Printf("%-15s", locations[i])
+		fmt.Printf("%-15d", sizes[i])
+		fmt.Printf("%-15d", beds[i])
+		fmt.Printf("%-15d", baths[i])
+		fmt.Printf("%-15d\n", prices[i])
+	}
+
+	fmt.Printf("\n%s\n", strings.Repeat("=", 75))
+	fmt.Printf("%-15s", "")
+
+	datas := [][]int{sizes, beds, baths, prices}
+	for _, data := range datas {
+		sum := 0.
+		for _, n := range data {
+			sum += float64(n)
+		}
+		fmt.Printf("%-15.2f", sum/float64(len(data)))
+	}
+	println()
 }

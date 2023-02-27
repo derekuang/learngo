@@ -8,6 +8,8 @@
 
 package main
 
+import "os"
+
 // ---------------------------------------------------------
 // EXERCISE: Print the Path
 //
@@ -23,4 +25,5 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	println(os.Args[0])
 }

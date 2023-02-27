@@ -22,6 +22,7 @@ package main
 func main() {
 	// UNCOMMENT THE CODE BELOW:
 
-	// red, blue := "red", "blue"
-	// ?
+	red, blue := "red", "blue"
+	red, blue = blue, red
+	println(red, blue)
 }

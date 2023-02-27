@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+	"sort"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Sort and write items to a file
 //
@@ -48,4 +55,23 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	args := os.Args[1:]
+	if len(args) == 0 {
+		println("Send me some items and I will sort them")
+		return
+	}
+
+	sort.Strings(args)
+
+	words := []byte{}
+	for _, arg := range args {
+		words = append(words, arg...)
+		words = append(words, ' ')
+	}
+
+	err := ioutil.WriteFile("out.txt", words, 0644)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
