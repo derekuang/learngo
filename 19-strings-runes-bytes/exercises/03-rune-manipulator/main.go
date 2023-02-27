@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"fmt"
+	"unicode/utf8"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Rune Manipulator
 //
@@ -26,30 +31,53 @@ func main() {
 		"read 🤓",
 	}
 
-	_ = words
+	for _, word := range words {
+		fmt.Printf("%s\n", word)
 
-	// Print the byte and rune length of the strings
-	// Hint: Use len and utf8.RuneCountInString
+		// Print the byte and rune length of the strings
+		// Hint: Use len and utf8.RuneCountInString
+		fmt.Printf("\t\thas %d bytes and %d runes\n", len(word), utf8.RuneCountInString(word))
 
-	// Print the bytes of the strings in hexadecimal
-	// Hint: Use % x verb
+		// Print the bytes of the strings in hexadecimal
+		// Hint: Use % x verb
+		fmt.Printf("\t\t%-8s: % x\n", "bytes", []byte(word))
 
-	// Print the runes of the strings in hexadecimal
-	// Hint: Use % x verb
+		// Print the runes of the strings in hexadecimal
+		// Hint: Use % x verb
+		fmt.Printf("\t\t%-8s:", "runes")
+		for _, c := range word {
+			fmt.Printf("% x", c)
+		}
+		fmt.Println()
 
-	// Print the runes of the strings as rune literals
-	// Hint: Use for range
+		// Print the runes of the strings as rune literals
+		// Hint: Use for range
+		fmt.Printf("\t\t%-8s: ", "runes")
+		for _, c := range word {
+			fmt.Printf("'%c'", c)
+		}
+		fmt.Println()
 
-	// Print the first rune and its byte size of the strings
-	// Hint: Use utf8.DecodeRuneInString
+		// Print the first rune and its byte size of the strings
+		// Hint: Use utf8.DecodeRuneInString
+		c, size := utf8.DecodeRuneInString(word)
+		fmt.Printf("\t\t%-8s: '%c' (%d bytes)\n", "first", c, size)
 
-	// Print the last rune of the strings
-	// Hint: Use utf8.DecodeLastRuneInString
+		// Print the last rune of the strings
+		// Hint: Use utf8.DecodeLastRuneInString
+		c, size = utf8.DecodeLastRuneInString(word)
+		fmt.Printf("\t\t%-8s: '%c' (%d bytes)\n", "last", c, size)
 
-	// Slice and print the first two runes of the strings
+		// Slice and print the first two runes of the strings
+		fmt.Printf("\t\t%-8s: \"%s\"\n", "first 2", string([]rune(word)[:2]))
 
-	// Slice and print the last two runes of the strings
+		// Slice and print the last two runes of the strings
+		fmt.Printf("\t\t%-8s: \"%s\"\n", "last 2", string([]rune(word)[utf8.RuneCountInString(word)-2:]))
 
-	// Convert the string to []rune
-	// Print the first and last two runes
+		// Convert the string to []rune
+		// Print the first and last two runes
+		word1 := []rune(word)
+		fmt.Printf("\t\t%-8s: \"%s\"\n", "first 2", string(word1[:2]))
+		fmt.Printf("\t\t%-8s: \"%s\"\n", "last 2", string(word1[len(word1)-2:]))
+	}
 }
