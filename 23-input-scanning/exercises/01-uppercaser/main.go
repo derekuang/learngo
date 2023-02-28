@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Uppercaser
 //
@@ -25,4 +32,10 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	file, _ := os.Open("shakespeare.txt")
+
+	in := bufio.NewScanner(file)
+	for in.Scan() {
+		fmt.Println(strings.ToUpper(in.Text()))
+	}
 }
