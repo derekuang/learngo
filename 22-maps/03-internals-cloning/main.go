@@ -35,7 +35,7 @@ func main() {
 	delete(dict, "awesome") // #6
 	delete(dict, "awesome") // #7: no-op
 	delete(dict, "notexisting")
-	
+
 	// dict = nil // #8
 	for k := range dict { // #9
 		delete(dict, k)

@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Populate and Lookup
 //
@@ -70,4 +72,67 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	var (
+		// #1
+		// Key        : Last name
+		// Element    : Phone number
+		phones map[string]string
+
+		// #2
+		// Key        : Product ID
+		// Element    : Available / Unavailable
+		products map[int]bool
+
+		// #3
+		// Key        : Last name
+		// Element    : Phone numbers
+		multiPhones map[string][]string
+
+		// #4
+		// Key        : Customer ID
+		// Element Key:
+		//   Key: Product ID Element: Quantity
+		basket map[int]map[int]int
+	)
+
+	phones = make(map[string]string)
+	phones["bowen"] = "202-555-0179"
+	phones["dulin"] = "03.37.77.63.06"
+	phones["greco"] = "03489940240"
+
+	who, phone := "dulin", "N/A"
+	if p, ok := phones[who]; ok {
+		phone = p
+	}
+	fmt.Printf("dulin's phone number: %s\n", phone)
+
+	products = make(map[int]bool)
+	products[617841573] = true
+	products[879401371] = false
+	products[576872813] = true
+
+	pid, status := 879401371, "available"
+	if _, ok := products[pid]; !ok {
+		status = "not " + status
+	}
+	fmt.Printf("Product ID #%d is %s\n", pid, status)
+
+	multiPhones = make(map[string][]string)
+	multiPhones["bowen"] = []string{"202-555-0179"}
+	multiPhones["dulin"] = []string{"03.37.77.63.06", "03.37.70.50.05", "02.20.40.10.04"}
+	multiPhones["greco"] = []string{"03489940240", "03489900120"}
+
+	who, phone = "greco", "N/A"
+	if phones, ok := multiPhones["greco"]; ok && len(phones) >= 2 {
+		phone = phones[1]
+	}
+	fmt.Printf("%s's 2nd phone number: %s\n", who, phone)
+
+	basket = make(map[int]map[int]int)
+	basket[100] = map[int]int{617841573: 4, 576872813: 2}
+	basket[101] = map[int]int{576872813: 5, 657473833: 20}
+	basket[102] = map[int]int{}
+
+	cid, pid := 101, 576872813
+	fmt.Printf("Customer #%d is going to buy %d from Product ID #%d.\n", cid, basket[cid][pid], pid)
 }
