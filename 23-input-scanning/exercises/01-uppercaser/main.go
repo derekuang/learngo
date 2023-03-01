@@ -32,9 +32,7 @@ import (
 // ---------------------------------------------------------
 
 func main() {
-	file, _ := os.Open("shakespeare.txt")
-
-	in := bufio.NewScanner(file)
+	in := bufio.NewScanner(os.Stdin)
 	for in.Scan() {
 		fmt.Println(strings.ToUpper(in.Text()))
 	}

@@ -38,9 +38,7 @@ import (
 // ---------------------------------------------------------
 
 func main() {
-	file, _ := os.Open("shakespeare.txt")
-
-	in := bufio.NewScanner(file)
+	in := bufio.NewScanner(os.Stdin)
 	in.Split(bufio.ScanWords)
 
 	total, words := 0, map[string]int{}

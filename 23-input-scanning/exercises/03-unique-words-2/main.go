@@ -45,11 +45,9 @@ func main() {
 	// [^A-Za-z]+
 	//
 	// Matches to any character but upper case and lower case letters
-	file, _ := os.Open("shakespeare.txt")
-
 	rx := regexp.MustCompile(`[^A-Za-z]+`)
 
-	in := bufio.NewScanner(file)
+	in := bufio.NewScanner(os.Stdin)
 	in.Split(bufio.ScanWords)
 
 	total, words := 0, map[string]int{}
