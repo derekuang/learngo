@@ -3,6 +3,7 @@ module github.com/inancgumus/learngo
 go 1.13
 
 require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/color v1.10.0
 	github.com/guineveresaenger/golang-rainbow v0.0.0-20171201190047-7b6c54e09b61
 	github.com/inancgumus/prettyslice v0.0.0-20190305220808-d802ba58098f
