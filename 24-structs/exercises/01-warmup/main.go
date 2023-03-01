@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Warm Up
 //
@@ -36,5 +38,47 @@ package main
 //  Please run the solution to see the output.
 // ---------------------------------------------------------
 
+type item struct {
+	id    int
+	name  string
+	price int
+}
+
+type game struct {
+	genre string
+	item  item
+}
+
 func main() {
+	games := []game{
+		{
+			genre: "action adventure",
+			item: item{
+				id:    1,
+				name:  "god of war",
+				price: 50,
+			},
+		},
+		{
+			genre: "strategy",
+			item: item{
+				id:    2,
+				name:  "x-com 2",
+				price: 30,
+			},
+		},
+		{
+			genre: "sandbox",
+			item: item{
+				id:    3,
+				name:  "minecraft",
+				price: 20,
+			},
+		},
+	}
+
+	fmt.Printf("Inanc's game store has %d games.\n\n", len(games))
+	for _, game := range games {
+		fmt.Printf("#%d: %-15q %-20s $%d\n", game.item.id, game.item.name, "("+game.genre+")", game.item.price)
+	}
 }
