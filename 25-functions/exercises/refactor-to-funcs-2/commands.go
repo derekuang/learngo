@@ -1,19 +1,19 @@
-// Copyright © 2018 Inanc Gumus
-// Learn Go Programming Course
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-//
-// For more tutorials  : https://learngoprogramming.com
-// In-person training  : https://www.linkedin.com/in/inancgumus/
-// Follow me on twitter: https://twitter.com/inancgumus
-
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"strconv"
 	"strings"
 )
+
+func menu() {
+	fmt.Printf(`
+  > list   : lists all the games
+  > id N   : queries a game by id
+  > quit   : quits
+  
+`)
+}
 
 func runCmd(input string, games []game, byID map[int]game) bool {
 	fmt.Println()
@@ -32,10 +32,8 @@ func runCmd(input string, games []game, byID map[int]game) bool {
 
 	case "id":
 		return cmdByID(cmd, games, byID)
-
-	case "save":
-		return cmdSave(games)
 	}
+
 	return true
 }
 
@@ -72,20 +70,4 @@ func cmdByID(cmd []string, games []game, byID map[int]game) bool {
 	printGame(g)
 
 	return true
-}
-
-func cmdSave(games []game) bool {
-	var encodable []jsonGame
-	for _, g := range games {
-		encodable = append(encodable, jsonGame{g.id, g.name, g.genre, g.price})
-	}
-
-	out, err := json.MarshalIndent(encodable, "", "\t")
-	if err != nil {
-		fmt.Println("Sorry:", err)
-		return true
-	}
-
-	fmt.Println(string(out))
-	return false
 }

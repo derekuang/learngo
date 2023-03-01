@@ -51,6 +51,7 @@ func main() {
 		fmt.Printf(`
   > list   : lists all the games
   > id N   : queries a game by id
+  > save   : exports the data to json and quits
   > quit   : quits
 
 `)
