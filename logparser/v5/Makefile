@@ -1,5 +1,5 @@
 r: 
-	go run . < ../../logs/log.txt
+	go run . ../logs/log.txt
 
 t: 
-	time go run . < ../../logs/log.txt
+	time go run . ../logs/log.txt
