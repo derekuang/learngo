@@ -23,11 +23,11 @@ type computer struct {
 }
 
 func main() {
-	var c *computer
+	c := &computer{}
 	change(c, "apple")
-	fmt.Printf("brand: %s\n", c.brand)
+	fmt.Printf("brand: %s\n", *c.brand)
 }
 
 func change(c *computer, brand string) {
-	(*c.brand) = brand
+	c.brand = &brand
 }

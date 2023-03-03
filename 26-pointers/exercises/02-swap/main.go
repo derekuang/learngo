@@ -42,5 +42,22 @@
 
 package main
 
+import "fmt"
+
 func main() {
+	f1, f2 := 1., 2.
+	swap(&f1, &f2)
+	fmt.Printf("f1: %f f2: %f\n", f1, f2)
+
+	p1, p2 := &f1, &f2
+	p1, p2 = swapAddr(p1, p2)
+	fmt.Printf("p1: %p %f p2: %p %f\n", p1, *p1, p2, *p2)
+}
+
+func swap(f1, f2 *float64) {
+	*f1, *f2 = *f2, *f1
+}
+
+func swapAddr(p1, p2 *float64) (*float64, *float64) {
+	return p2, p1
 }
