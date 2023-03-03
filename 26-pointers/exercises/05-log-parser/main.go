@@ -30,7 +30,7 @@ func main() {
 			return
 		}
 
-		p = update(p, parsed)
+		update(p, parsed)
 	}
 
 	// Print the visits per domain

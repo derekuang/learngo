@@ -30,12 +30,12 @@ type parser struct {
 }
 
 // newParser constructs, initializes and returns a new parser
-func newParser() parser {
-	return parser{sum: make(map[string]result)}
+func newParser() *parser {
+	return &parser{sum: make(map[string]result)}
 }
 
 // parse parses a log line and returns the parsed result with an error
-func parse(p parser, line string) (parsed result, err error) {
+func parse(p *parser, line string) (parsed result, err error) {
 	fields := strings.Fields(line)
 	if len(fields) != 2 {
 		err = fmt.Errorf("wrong input: %v (line #%d)", fields, p.lines)
@@ -54,7 +54,7 @@ func parse(p parser, line string) (parsed result, err error) {
 }
 
 // update updates the parser for the given parsing result
-func update(p parser, parsed result) parser {
+func update(p *parser, parsed result) {
 	domain, visits := parsed.domain, parsed.visits
 
 	// Collect the unique domains
@@ -70,6 +70,4 @@ func update(p parser, parsed result) parser {
 		domain: domain,
 		visits: visits + p.sum[domain].visits,
 	}
-
-	return p
 }
