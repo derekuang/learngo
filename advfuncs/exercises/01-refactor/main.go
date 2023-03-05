@@ -30,12 +30,17 @@ func main() {
 	fmt.Println(headerOf("gif"))
 }
 
-func headerOf(format string) string {
-	switch format {
-	case "png":
-		return "\x89PNG\r\n\x1a\n"
-	case "jpg":
-		return "\xff\xd8\xff"
-	}
-	panic("unknown format: " + format)
+var headers = map[string]string{
+	"png": "\x89PNG\r\n\x1a\n",
+	"jpg": "\xff\xd8\xff",
+}
+
+func headerOf(format string) (head string) {
+	defer func() {
+		if head == "" {
+			panic("unknown format: " + format)
+		}
+	}()
+
+	return headers[format]
 }
